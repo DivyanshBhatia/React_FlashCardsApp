@@ -13,7 +13,11 @@ render() {
               <View style={styles.subtitleView}>
                 <Text>{data.questions.length} cards</Text>
               </View>
-            }/>
+            }
+            onPress={()=>this.props.navigation.navigate(
+            	'ActiveDeck',
+            	{deckData: data}
+            	)}/>
         )}
 	}
 

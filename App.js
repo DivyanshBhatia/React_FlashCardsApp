@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import { StyleSheet, Platform, View, StatusBar } from 'react-native';
 import DecksComponent from './components/DecksComponent'
 import AddNewDeckComponent from './components/AddNewDeckComponent'
+import ActiveDeckComponent from './components/ActiveDeckComponent'
 import { purple, white } from './utils/colors'
-import {TabNavigator} from 'react-navigation'
+import {TabNavigator,StackNavigator} from 'react-navigation'
 import {Constants} from 'expo'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -55,13 +56,29 @@ const Tabs = TabNavigator({
   }
 }
 )
+
+const MainNavigator=StackNavigator({
+  Home :{
+    screen:Tabs
+  },
+  ActiveDeck:{
+   screen:ActiveDeckComponent,
+     navigationOptions: {
+      tabBarLabel: 'ActiveDeck',
+      headerTintColor:Platform.OS === 'ios' ? purple : white,
+      headerStyle: {
+        backgroundColor:Platform.OS === 'ios' ? white : purple,
+      }
+    }, 
+  }
+})
 export default class App extends Component {
   render() {
     return (
     <Provider store={createStore(combineReducer)}>
       <View style={{flex: 1}}>
           <AppStatusBar backgroundColor={purple} barStyle="light-content" />
-          <Tabs/>
+          <MainNavigator/>
       </View>
     </Provider>
     );

@@ -8,11 +8,6 @@ import DeckComponent from './DeckComponent'
 
 class DecksComponent extends Component{
 
-  static navigationOptions = {
-    title: 'DecksComponent',
-    tabBarLabel: 'Decks'
-  }
-
   componentWillMount(){
     fetchAllDecks()
     .then((entries) => this.props.receiveEntries(entries))
@@ -28,7 +23,7 @@ class DecksComponent extends Component{
               return item.title!=null && item.title.length > 0 
             })}
           renderItem={({ item }) => (
-            <DeckComponent data={item}/>
+            <DeckComponent data={item} navigation={this.props.navigation}/>
           )}
           keyExtractor={item => item.title}/>
       </View>
