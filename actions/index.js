@@ -1,4 +1,4 @@
-import {ADD_DECK_ENTRY,RECEIVE_ENTRIES} from './types'
+import {ADD_DECK_ENTRY,RECEIVE_ENTRIES,ADD_ACTIVE_DECK_ENTRY} from './types'
 
 export function addDeckEntry(data){
 	return {
@@ -8,9 +8,15 @@ export function addDeckEntry(data){
 }
 
 export function receiveEntries(data){
-	console.log('data',data);
 	return {
 		type:RECEIVE_ENTRIES,
+		payload:data,
+	}
+}
+
+export function addActiveDeckEntry(data){
+	return {
+		type:ADD_ACTIVE_DECK_ENTRY,
 		payload:data,
 	}
 }

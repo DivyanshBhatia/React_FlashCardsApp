@@ -3,6 +3,8 @@ import { StyleSheet, Platform, View, StatusBar } from 'react-native';
 import DecksComponent from './components/DecksComponent'
 import AddNewDeckComponent from './components/AddNewDeckComponent'
 import ActiveDeckComponent from './components/ActiveDeckComponent'
+import AddCardToDeckComponent from './components/AddCardToDeckComponent'
+
 import { purple, white } from './utils/colors'
 import {TabNavigator,StackNavigator} from 'react-navigation'
 import {Constants} from 'expo'
@@ -70,7 +72,17 @@ const MainNavigator=StackNavigator({
         backgroundColor:Platform.OS === 'ios' ? white : purple,
       }
     }, 
-  }
+  },
+  AddCardToActiveDeck:{
+   screen:AddCardToDeckComponent,
+     navigationOptions: {
+      tabBarLabel: 'AddCardToActiveDeck',
+      headerTintColor:Platform.OS === 'ios' ? purple : white,
+      headerStyle: {
+        backgroundColor:Platform.OS === 'ios' ? white : purple,
+      }
+    }, 
+  },
 })
 export default class App extends Component {
   render() {

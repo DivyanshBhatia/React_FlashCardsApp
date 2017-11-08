@@ -7,10 +7,21 @@ export function submitDeck ({ entry, key }) {
   }))
 }
 
+export function submitCardToDeck ({ entry, key }) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then((results) => {
+      const data = JSON.parse(results)
+      const {title,questions}=data[key]
+      data[key]={'title':title,'questions':[...questions,entry]}
+      AsyncStorage.setItem(DECKS_STORAGE_KEY,JSON.stringify(data))
+     })
+}
+
 export function fetchAllDecks () {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then((results) => {
       const data = JSON.parse(results)
+
       return data
   })
 }
