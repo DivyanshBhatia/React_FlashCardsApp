@@ -1,0 +1,2 @@
+export const ADD_DECK_ENTRY = 'ADD_DECK_ENTRY'
+export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES'

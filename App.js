@@ -5,6 +5,10 @@ import AddNewDeckComponent from './components/AddNewDeckComponent'
 import { purple, white } from './utils/colors'
 import {TabNavigator} from 'react-navigation'
 import {Constants} from 'expo'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import combineReducer from './reducers'
+
 
 //Status Bar is controlled here
 function AppStatusBar({backgroundColor,...props}){
@@ -54,10 +58,12 @@ const Tabs = TabNavigator({
 export default class App extends Component {
   render() {
     return (
+    <Provider store={createStore(combineReducer)}>
       <View style={{flex: 1}}>
           <AppStatusBar backgroundColor={purple} barStyle="light-content" />
           <Tabs/>
       </View>
+    </Provider>
     );
   }
 }
