@@ -4,6 +4,7 @@ import DecksComponent from './components/DecksComponent'
 import AddNewDeckComponent from './components/AddNewDeckComponent'
 import ActiveDeckComponent from './components/ActiveDeckComponent'
 import AddCardToDeckComponent from './components/AddCardToDeckComponent'
+import QuizForDeckComponent from './components/QuizForDeckComponent'
 
 import { purple, white } from './utils/colors'
 import {TabNavigator,StackNavigator} from 'react-navigation'
@@ -77,6 +78,16 @@ const MainNavigator=StackNavigator({
    screen:AddCardToDeckComponent,
      navigationOptions: {
       tabBarLabel: 'AddCardToActiveDeck',
+      headerTintColor:Platform.OS === 'ios' ? purple : white,
+      headerStyle: {
+        backgroundColor:Platform.OS === 'ios' ? white : purple,
+      }
+    }, 
+  },
+  StartQuizForDeck:{
+   screen:QuizForDeckComponent,
+     navigationOptions: {
+      tabBarLabel: 'StartQuizForDeck',
       headerTintColor:Platform.OS === 'ios' ? purple : white,
       headerStyle: {
         backgroundColor:Platform.OS === 'ios' ? white : purple,

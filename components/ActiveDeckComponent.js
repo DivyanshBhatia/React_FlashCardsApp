@@ -14,7 +14,10 @@ class ActiveDeckComponent extends Component{
 	}
 
 	render(){
-		console.log("activeDeck",Object.values(this.props.activeDeck))
+    const hasNoCards= typeof this.props.activeDeck=== undefined || 
+                      Object.values(this.props.activeDeck).length === 0 ||
+                      Object.values(this.props.activeDeck)[0].questions.length === 0
+          
 		return (
 			<View style={styles.container}>
 			<Text>
@@ -24,8 +27,7 @@ class ActiveDeckComponent extends Component{
 			</Text>
 			<Text>	
 				{
-					typeof this.props.activeDeck!== undefined && Object.values(this.props.activeDeck).length>0
-					? Object.values(this.props.activeDeck)[0].questions.length : 0
+					hasNoCards ? 0 : Object.values(this.props.activeDeck)[0].questions.length
 				} cards</Text>
 			
 			<View style={styles.btnSettings}>	
@@ -38,11 +40,17 @@ class ActiveDeckComponent extends Component{
           			<Text style={styles.btnText}
           			>Add Cards</Text>
         		</TouchableOpacity>
-				<TouchableOpacity
+				{ !hasNoCards &&
+        <TouchableOpacity
+                onPress = {() => 
+                  this.props.navigation.navigate(
+                  'StartQuizForDeck'
+                  )}
           			style={styles.btn}>
           			<Text style={styles.btnText}>Start Quiz</Text>
         		</TouchableOpacity>
-        		<TouchableOpacity
+        }		
+        <TouchableOpacity
         			onPress = {() => 
           				this.props.navigation.navigate(
             			'Decks'
