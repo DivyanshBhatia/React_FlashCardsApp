@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { connect } from 'react-redux'
 import {fetchAllDecks} from '../utils/api'
 import {receiveEntries} from '../actions'
+import DeckComponent from './DeckComponent'
 
 
 class DecksComponent extends Component{
@@ -27,8 +28,8 @@ class DecksComponent extends Component{
               return item.title!=null && item.title.length > 0 
             })}
           renderItem={({ item }) => (
-              <Text>{item.title}</Text>
-            )}
+            <DeckComponent data={item}/>
+          )}
           keyExtractor={item => item.title}/>
       </View>
     );
@@ -39,8 +40,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
