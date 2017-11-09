@@ -8,7 +8,6 @@ import {addActiveDeckEntry} from '../actions'
 class DeckComponent extends Component{
 	handleOnPress=() =>
 	{
-		console.log('activeTitle',`${this.props.data.title}`);
 		const key=`${this.props.data.title}`
 		this.props.addActiveDeckEntry({
          [key]:{'title':this.props.data.title,
