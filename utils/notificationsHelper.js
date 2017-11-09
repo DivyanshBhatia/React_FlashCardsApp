@@ -2,6 +2,7 @@ import {NOTIFICATION_STORAGE_KEY} from './storageKeys'
 import { AsyncStorage } from 'react-native'
 import {Notifications,Permissions} from 'expo'
 
+//Some part Notifications code is borrowed from the in class udacity fitness app taught by tyler during react nanodegree program
 export function clearLocalNotifications(){
 	return AsyncStorage.removeItem(NOTIFICATION_STORAGE_KEY)
 	.then(Notifications.cancelAllScheduledNotificationAsync)
