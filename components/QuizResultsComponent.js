@@ -2,8 +2,17 @@ import React, {Component} from 'react';
 import { StyleSheet, Platform, View, Text, TouchableOpacity } from 'react-native';
 import {red,white,blue} from '../utils/colors';
 import {Constants} from 'expo'
+import {clearLocalNotifications,setLocalNotification} from '../utils/notificationsHelper'
 
 class QuizResultsComponent extends Component{
+
+	componentWillMount(){
+		this.scheduleAndPopulateNotification();
+	}
+
+	scheduleAndPopulateNotification(){
+		clearLocalNotifications().then(setLocalNotification)
+	}
 
 	handleRetake=()=>{
 		this.props.navigation.navigate('ActiveDeck')

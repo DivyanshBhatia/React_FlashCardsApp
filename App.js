@@ -14,6 +14,8 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import combineReducer from './reducers'
 
+import {setLocalNotification} from './utils/notificationsHelper'
+
 
 //Status Bar is controlled here
 function AppStatusBar({backgroundColor,...props}){
@@ -107,6 +109,9 @@ const MainNavigator=StackNavigator({
   },
 })
 export default class App extends Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     return (
     <Provider store={createStore(combineReducer)}>
