@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {red,white,blue} from '../utils/colors';
 import {Constants} from 'expo'
 import TextButton from './TextButton'
+import QuizResultsComponent from './QuizResultsComponent'
 
 class QuizForDeckComponent extends Component{
 	
@@ -17,6 +18,7 @@ class QuizForDeckComponent extends Component{
    		activeQuestionIndex:0,
    		isQuestionDisplayed:true,
    		isAnswerDisplayed:false,
+   		score:0
   	}
 
   	handleSubmit=()=>{
@@ -26,6 +28,17 @@ class QuizForDeckComponent extends Component{
    			 isAnswerDisplayed:false,
     		});
   		}
+
+  	handleCorrect=()=>{
+  		this.setState({
+     		 score: this.state.score + 1,
+    		});
+  		this.handleSubmit()
+  	}
+
+  	handleIncorrect=()=>{
+  		this.handleSubmit()
+  	}
 
   	displayAnswer = () =>{
   		this.setState({
@@ -74,8 +87,11 @@ class QuizForDeckComponent extends Component{
         		</TextButton>
         	</View>
 			}
-			
-				<TouchableOpacity
+			{
+			(
+			Object.values(this.props.activeDeck)[0].questions.length > this.state.activeQuestionIndex)  &&
+			<View>
+			<TouchableOpacity
 				style={styles.btnCorrect}
 				onPress = {this.handleCorrect}>
                 <Text style={styles.btnText}>
@@ -90,7 +106,15 @@ class QuizForDeckComponent extends Component{
                 	Incorrect
                 </Text>
                 </TouchableOpacity>
-
+            </View>
+        	}
+        	{
+			(Object.values(this.props.activeDeck)[0].questions.length === this.state.activeQuestionIndex)  &&
+				<QuizResultsComponent score={this.state.score}
+				navigation={this.props.navigation}
+				totalQuestions={Object.values(this.props.activeDeck)[0].questions.length}
+				title={Object.values(this.props.activeDeck)[0].title}/>
+			}
 			</View>	
 		
 	)}
